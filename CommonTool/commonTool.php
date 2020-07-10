@@ -13,12 +13,6 @@ function getValue($variable ,$name ,$default = false) {
 	return $default;
 }
 
-$variable = ['arr1' => 'arr1_val' ,'arr2' => 'arr2_val'];
-$name = 'arr';
-$default = false;
-
-echo 'result is '.PHP_EOL; var_dump(getValue($variable ,$name)); echo PHP_EOL;
-
 
 
 
