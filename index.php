@@ -1,11 +1,11 @@
 <?php
 
 
-include_once('./FileTool/common.php');
+include_once('./FileTool/FileCommonTool.php');
 
 //get files name
 $dir = dirname(__FILE__);
-$files_arr = getFiles($dir);
+$files_arr = FileCommonTool::getFilePath($dir ,['index.php']);
 
 //include files
 

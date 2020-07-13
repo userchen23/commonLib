@@ -3,10 +3,10 @@
 /**
  * 
  */
-class FileCommon
+class FileCommonTool
 {
     //the items what should be prohibited 
-    private $prohibited_items = ['.' ,'..' ,'.git'];
+    private static $prohibited_items = ['.' ,'..' ,'.git'];
 
 
     //根据目录结构返回某路径下的所有文件
@@ -19,15 +19,15 @@ class FileCommon
         if (!is_array($ext_item)) {
             return [];
         } else {
-            $end_item_list = array_merge($ext_item ,$this->prohibited_items);
+            $end_item_list = array_merge($ext_item ,self::$prohibited_items);
         }
 
         $files = [];
         if (@$handle = opendir($dir)) {
             while (($file = readdir($handle)) !== false) {
                 if (!in_array($file ,$end_item_list)) {
-                    if (is_dir($dir ."/" .$file)) { //如果是子文件夹，进行递归
-                        $files[$file] = $this->getFileStruct($dir ."/" .$file);
+                    if (is_dir($dir .'/' .$file)) { //如果是子文件夹，进行递归
+                        $files[$file] = self::getFileStruct($dir .'/' .$file);
                     } else {
                         $files[] = $file;
                     }
@@ -48,17 +48,17 @@ class FileCommon
         if (!is_array($ext_item)) {
             return [];
         } else {
-            $end_item_list = array_merge($ext_item ,$this->prohibited_items);
+            $end_item_list = array_merge($ext_item ,self::$prohibited_items);
         }
 
         $files = [];
         if (@$handle = opendir($dir)) {
             while (($file = readdir($handle)) !== false) {
                 if (!in_array($file ,$end_item_list)) {
-                    if (is_dir($dir ."/" .$file)) { //如果是子文件夹，进行递归
-                        $files[] = $this->getFilePath($dir ."/" .$file);
+                    if (is_dir($dir .'/' .$file)) { //如果是子文件夹，进行递归
+                        $files[] = self::getFilePath($dir .'/' .$file);
                     } else {
-                        $files[] = $file;
+                        $files[] = $dir .'/' .$file;
                     }
                 }
             }
